@@ -24,7 +24,7 @@ public class ControllerOrderDetail {
     public void delOrder(@PathVariable("orderDetailId") Long orderDetailId){
         orderDetailService.delOrderDetail(orderDetailId);
     }
-
+//
 //    @RequestMapping(value = "/editOrder", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 //    public void searchOrderDetail(@RequestBody Order newOrder){
 //        orderDetailService.searchOrderDetail(newOrder);
