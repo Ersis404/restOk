@@ -1,10 +1,11 @@
 package com.example.rest.service;
 
-import com.example.rest.model.Order;
 import com.example.rest.model.OrderDetail;
 import com.example.rest.repository.OrderDetailRepository;
-import com.example.rest.repository.OrderRepository;
+
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class OrderDetailService {
@@ -22,7 +23,7 @@ public class OrderDetailService {
         orderDetailRepository.deleteById(orderDetailId);
     }
 
-    public void searchOrderDetail(){
-
+    public OrderDetail searchOrderDetail(Long order_id){
+        Optional<OrderDetail> orderDetail = orderDetailRepository.findAll();
     };
 }

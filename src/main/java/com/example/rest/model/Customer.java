@@ -1,6 +1,8 @@
 package com.example.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "customer")
+@NoArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +25,17 @@ public class Customer {
     private String adres;
     private String email;
     private String phone;
-    @OneToMany(mappedBy ="customer", fetch = FetchType.LAZY)
-    private List<Order> orders;
+    @JsonIgnore
+    @OneToMany(mappedBy ="customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Orders> orders;
+
+    public Customer(String name, String surname, String middlename, String adres, String email, String phone){
+        this.name=name;
+        this.surname=surname;
+        this.middlename=middlename;
+        this.adres=adres;
+        this.email=email;
+        this.phone=phone;
+    }
 }
+

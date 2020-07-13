@@ -16,8 +16,8 @@ public class OrderDetail {
     @GenericGenerator(name= "increment", strategy= "increment")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "orders_id")
+    private Orders orders;
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

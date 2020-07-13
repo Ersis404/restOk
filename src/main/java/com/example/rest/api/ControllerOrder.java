@@ -1,37 +1,56 @@
 package com.example.rest.api;
 
 
-import com.example.rest.model.Order;
+import com.example.rest.model.Customer;
+import com.example.rest.model.Order_status;
+import com.example.rest.model.Orders;
+import com.example.rest.model.Payment_method;
+import com.example.rest.repository.CustomerRepository;
+import com.example.rest.repository.OrdersRepository;
 import com.example.rest.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+import java.time.LocalDate;
+
 @RestController
-@RequestMapping(value = "/api/order",produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/api/orders",produces = {MediaType.APPLICATION_JSON_VALUE})
 public class ControllerOrder {
     private final OrderService orderService;
-
+    private final OrdersRepository ordersRepository;
+    private final CustomerRepository customerRepository;
     @Autowired
-    public ControllerOrder(OrderService orderService){ this.orderService = orderService; }
-
-    @RequestMapping(value = "/addNewOrder", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void addNewOrder(@RequestBody Order newOrder){
-        orderService.addNewOrderOrChange(newOrder);
+    public ControllerOrder(OrderService orderService, OrdersRepository ordersRepository, CustomerRepository customerRepository){
+        this.orderService = orderService;
+        this.ordersRepository = ordersRepository;
+        this.customerRepository = customerRepository;
     }
 
-    @RequestMapping(value = "/delOrder/{orderId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void delOrder(@PathVariable("orderId") Long orderId){
+    @RequestMapping(value = "/addNewOrders", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void addNewOrder(@RequestBody Orders newOrders){
+        orderService.addNewOrderOrChange(newOrders);
+    }
+
+    @RequestMapping(value = "/delOrders/{ordersId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void delOrder(@PathVariable("ordersId") Long orderId){
         orderService.delOrder(orderId);
     }
 
-    @RequestMapping(value = "/editOrder", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void editOrder(@RequestBody Order newOrder){
-        orderService.addNewOrderOrChange(newOrder);
+    @RequestMapping(value = "/editOrders", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void editOrder(@RequestBody Orders newOrders){
+        orderService.addNewOrderOrChange(newOrders);
     }
 
-    @RequestMapping(value = "/getOneOrderById/{orderId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Order getOneOrderById(@PathVariable("orderId") Long orderId){
-        return orderService.getOneOrderById(orderId);
+    @RequestMapping(value = "/getOneOrderById/{ordersId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Orders getOneOrderById(@PathVariable("ordersId") Long ordersId){
+        return orderService.getOneOrderById(ordersId);
     }
+
+//    @PostConstruct
+//    private void init(){
+////        this.customerRepository.save(new Customer("Rdsd","dgdfgdf","dsfsdfs","dfsdfs","sdfsfsd","dfsfsfsdf"));
+//        this.ordersRepository.save(new Orders(LocalDate.now(), Order_status.valueOf("created"), Payment_method.valueOf("CREDIT_CARD"),  this.customerRepository.save(new Customer("Rdsd","dgdfgdf","dsfsdfs","dfsdfs","sdfsfsd","dfsfsfsdf"))));
+//    }
 }

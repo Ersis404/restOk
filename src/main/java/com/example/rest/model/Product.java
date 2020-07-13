@@ -1,5 +1,6 @@
 package com.example.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -20,6 +21,7 @@ public class Product {
    private Double price;
    private String description;
    private Boolean in_stock;
-   @OneToMany(mappedBy ="product", fetch = FetchType.LAZY)
+   @JsonIgnore
+   @OneToMany(mappedBy ="product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
    private List<OrderDetail> orderDetailsList;
 }

@@ -1,30 +1,30 @@
 package com.example.rest.service;
 
 
-import com.example.rest.model.Order;
-import com.example.rest.repository.OrderRepository;
+import com.example.rest.model.Orders;
+import com.example.rest.repository.OrdersRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class OrderService {
-    private final OrderRepository orderRepository;
+    private final OrdersRepository ordersRepository;
 
-    public OrderService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    public OrderService(OrdersRepository ordersRepository) {
+        this.ordersRepository = ordersRepository;
     }
 
-    public void addNewOrderOrChange(Order newOrder){
-        orderRepository.save(newOrder);
+    public void addNewOrderOrChange(Orders newOrders){
+        ordersRepository.save(newOrders);
     }
 
-    public void delOrder(Long orderId){
-        orderRepository.deleteById(orderId);
+    public void delOrder(Long ordersId){
+        ordersRepository.deleteById(ordersId);
     }
 
-    public Order getOneOrderById(Long orderId) {
-        Optional<Order> orders  = orderRepository.findById(orderId);
+    public Orders getOneOrderById(Long ordersId) {
+        Optional<Orders> orders  = ordersRepository.findById(ordersId);
         return orders.get();
     }
 }

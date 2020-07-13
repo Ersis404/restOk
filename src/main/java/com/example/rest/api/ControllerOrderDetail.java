@@ -1,6 +1,6 @@
 package com.example.rest.api;
 
-import com.example.rest.model.Order;
+import com.example.rest.model.Orders;
 import com.example.rest.model.OrderDetail;
 import com.example.rest.service.OrderDetailService;
 import org.springframework.http.MediaType;
