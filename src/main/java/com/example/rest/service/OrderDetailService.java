@@ -23,7 +23,7 @@ public class OrderDetailService {
         orderDetailRepository.deleteById(orderDetailId);
     }
 
-    public OrderDetail searchOrderDetail(Long order_id){
-        Optional<OrderDetail> orderDetail = orderDetailRepository.findAll();
-    };
+    //public OrderDetail searchOrderDetail(Long order_id){
+      //  Optional<OrderDetail> orderDetail = orderDetailRepository.findAll();
+   // };
 }
