@@ -31,7 +31,7 @@ public class Orders {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
     @JsonIgnore
-    @OneToMany(mappedBy ="orders", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy ="orders", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<OrderDetail> orderDetailList;
 
     public Orders(LocalDate order_date, Order_status order_status, Payment_method payment_method, Customer customer){

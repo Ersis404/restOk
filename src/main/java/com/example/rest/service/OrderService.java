@@ -15,10 +15,13 @@ public class OrderService {
         this.ordersRepository = ordersRepository;
     }
 
-    public void addNewOrderOrChange(Orders newOrders){
+    public void addNewOrder(Orders newOrders){
         ordersRepository.save(newOrders);
-    }
 
+    }
+    public void orderChange(Orders order){
+        ordersRepository.save(order);
+    }
     public void delOrder(Long ordersId){
         ordersRepository.deleteById(ordersId);
     }

@@ -30,7 +30,7 @@ public class ControllerOrder {
 
     @RequestMapping(value = "/addNewOrders", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void addNewOrder(@RequestBody Orders newOrders){
-        orderService.addNewOrderOrChange(newOrders);
+        orderService.addNewOrder(newOrders);
     }
 
     @RequestMapping(value = "/delOrders/{ordersId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -39,8 +39,8 @@ public class ControllerOrder {
     }
 
     @RequestMapping(value = "/editOrders", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void editOrder(@RequestBody Orders newOrders){
-        orderService.addNewOrderOrChange(newOrders);
+    public void editOrder(@RequestBody Orders orders){
+        orderService.orderChange(orders);
     }
 
     @RequestMapping(value = "/getOneOrderById/{ordersId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
