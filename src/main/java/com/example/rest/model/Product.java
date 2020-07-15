@@ -20,8 +20,8 @@ public class Product {
    private String name;
    private Double price;
    private String description;
-   private Boolean in_stock;
+   private Boolean inStock;
    @JsonIgnore
-   @OneToMany(mappedBy ="product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+   @OneToMany(mappedBy ="product",  fetch = FetchType.EAGER)
    private List<OrderDetail> orderDetailsList;
 }

@@ -16,10 +16,10 @@ public class OrderDetail {
     @GenericGenerator(name= "increment", strategy= "increment")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "orders_id")
+    @JoinColumn(name = "orders_id", nullable = false)
     private Orders orders;
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
     private Double price;
     private Integer quantity;
